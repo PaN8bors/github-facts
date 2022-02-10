@@ -29,7 +29,6 @@ function display(projects) {
 async function main() {
     const resp = await input.text('What is your github username?');
     const repos = await github(resp);
-    github(resp);
     display(repos);
 }
 
