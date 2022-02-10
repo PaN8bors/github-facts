@@ -11,8 +11,10 @@ async function github(username) {
 
 function display(projects) {
     if (projects == undefined) {
-        const projErr = new Error('No projects defined');
-        throw projErr
+        throw new Error('No projects defined');
+    }
+    if (projects === 0) {
+        throw new Error('No projects to display')
     }
     const sorted = projects.sort((projectA, projectB) => {
         const a = projectA.stargazers_count;
