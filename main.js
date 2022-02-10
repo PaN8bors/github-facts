@@ -27,9 +27,15 @@ function display(projects) {
 }
 
 async function main() {
-    const resp = await input.text('What is your github username?');
-    const repos = await github(resp);
-    display(repos);
+    try {
+        const resp = await input.text('What is your github username?');
+        const repos = await github(resp);
+        display(repos);
+    } catch (error) {
+        if (error.message.includes("404")) {
+            console.log('That input does not work');
+        }
+    }
 }
 
 main();
