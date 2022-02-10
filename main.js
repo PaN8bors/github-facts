@@ -10,6 +10,10 @@ async function github(username) {
 }
 
 function display(projects) {
+    if (projects == undefined) {
+        const projErr = new Error('No projects defined');
+        throw projErr
+    }
     const sorted = projects.sort((projectA, projectB) => {
         const a = projectA.stargazers_count;
         const b = projectB.stargazers_count;
@@ -33,7 +37,7 @@ async function main() {
             const resp = await input.text('What is your github username?');
             const repos = await github(resp);
             display(repos);
-            break:
+            break;
         }  catch (error) {
             console.log(error.message);
             err = error;
